@@ -1,7 +1,15 @@
 const fs = require('fs');
-const uglify = require('uglify-js');
+const uglifyjs = require('uglify-js');
+const uglifycss = require('uglifycss');
 
-let code = fs.readFileSync("main.js", "utf8");
-let minifiedCode = uglify.minify(code, { mangle: { toplevel: true } }).code;
+fs.mkdirSync("game_min");
 
-fs.writeFileSync("main_min.js", minifiedCode, "utf8");
+fs.copyFileSync("game/index.html", "game_min/index.html");
+
+let code = fs.readFileSync("game/main.js", "utf8");
+let minifiedCode = uglifyjs.minify(code, { mangle: { toplevel: true } }).code;
+fs.writeFileSync("game_min/main.js", minifiedCode, "utf8");
+
+let css = fs.readFileSync("game/style.css", "utf8");
+let minifiedCSS = uglifycss.processString(css, {});
+fs.writeFileSync("game_min/style.css", minifiedCSS, "utf8");
