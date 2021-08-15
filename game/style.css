@@ -4,8 +4,16 @@ body {
     overflow: hidden;
     padding: 0;
     margin: 0;
+    background-color: #464646;
 }
 
 canvas {
     position: absolute;
+    margin-left: calc((100vw - 640px) / 2);
+    margin-top: calc((100vh - 480px) / 2);
+    background-color: transparent;
+}
+
+img {
+    display: none;
 }
